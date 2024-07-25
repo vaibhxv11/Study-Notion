@@ -6,6 +6,9 @@ import OpenRoute from "./components/core/Auth/OpenRoute"
 // index.js or another entry point
 
 
+
+
+
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import ForgotPassword from "./pages/ForgotPassword";
@@ -40,7 +43,12 @@ function App() {
 
 
   return (
+
+    
    <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
+       
+
+ 
     <Navbar/>
     <Routes>
       <Route path="/" element={<Home/>} />
@@ -63,6 +71,7 @@ function App() {
             </OpenRoute>
           }
         />
+        
 
     <Route
           path="forgot-password"
@@ -72,6 +81,7 @@ function App() {
             </OpenRoute>
           }
         />  
+        
 
       <Route
           path="verify-email"

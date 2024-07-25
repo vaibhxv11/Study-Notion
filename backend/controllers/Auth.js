@@ -4,6 +4,8 @@ const OTP=require('../models/OTP')
 const otpGenerator=require("otp-generator")   //instance
 const bcrypt =require('bcrypt')
 const jwt=require('jsonwebtoken')
+const { hmac_rawurlsafe_base64_string } = require('../utils/hmacUtils');
+// const { sendNotification } = require('../utils/sendEvent');
 
 require("dotenv").config();
 
@@ -167,6 +169,22 @@ exports.signUp = async (req, res) => {
             additionalDetails: profileDetails._id,
             image: `https://api.dicebear.com/5.x/initials/svg?seed=${initials}`
         });
+
+        //Generate Subscriber id for SuprSend
+
+        const inboxSecret=process.env.INBOX_SECRET;
+        const subscriber_id=hmac_rawurlsafe_base64_string(user.email, inboxSecret);
+      
+        user.subscriber_id=subscriber_id;
+        await user.save();
+
+
+
+
+
+
+
+
         // Return response
         return res.status(200).json({
             success: true,
@@ -228,6 +246,9 @@ exports.login=async (req , res)=>{
             user.token=token;
             user.password=undefined;
 
+            //sending event 
+
+              
         
         //create cookie and send response
        
@@ -242,6 +263,8 @@ exports.login=async (req , res)=>{
             user ,
             message :"Logged In successfully" ,
         })
+
+        
 
     }
         else

@@ -3,7 +3,8 @@ import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai"
 import { BsChevronDown } from "react-icons/bs"
 import { useSelector } from "react-redux"
 import { Link, matchPath, useLocation } from "react-router-dom"
-
+import SuprSendInbox from '@suprsend/react-inbox'
+import 'react-toastify/dist/ReactToastify.css' // needed for toast notifications, can be ignored if hideToast=true
 import logo from "../../assets/Logo/Logo-Full-Light.png"
 import { NavbarLinks } from "../../data/navbar-links"
 import { apiConnector } from "../../services/apiconnector"
@@ -39,6 +40,12 @@ function Navbar() {
   const matchRoute = (route) => {
     return matchPath({ path: route }, location.pathname)
   }
+
+
+      const workspaceKey=process.env.REACT_APP_SUPRSEND_API_KEY
+      
+        const subscriberId=user ? user.subscriber_id : null;
+      const distinctId=user ? user.email : null;
 
   return (
     <div
@@ -115,10 +122,25 @@ function Navbar() {
           </ul>
         </nav>
         {/* Login / Signup / Dashboard */}
+     
         <div className="hidden items-center gap-x-4 md:flex">
+        <div className="flex text-2xl -mt-2  ">
+        <SuprSendInbox
+        workspaceKey={workspaceKey}
+        subscriberId={subscriberId}
+        distinctId={distinctId}
+        getHeaders={() => ({
+          Authorization: `Bearer ${process.env.workspaceKey}`
+        })}
+           themeType="dark" 
+          
+                />
+            </div>
+        
           {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
+             
             <Link to="/dashboard/cart" className="relative">
-              <AiOutlineShoppingCart className="text-2xl text-richblack-100" />
+              <AiOutlineShoppingCart className="text-2xl text-richblack-5" />
               {totalItems > 0 && (
                 <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center overflow-hidden rounded-full bg-richblack-600 text-center text-xs font-bold text-yellow-100">
                   {totalItems}
