@@ -42,7 +42,7 @@ function Navbar() {
   }
 
 
-      const workspaceKey=process.env.REACT_APP_SUPRSEND_API_KEY
+      const workspaceKey=process.env.WORKSPACE_KEY
       
         const subscriberId=user ? user.subscriber_id : null;
       const distinctId=user ? user.email : null;
