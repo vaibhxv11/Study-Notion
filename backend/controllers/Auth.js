@@ -259,7 +259,7 @@ exports.login=async (req , res)=>{
 
           await sendSuprSendEvent(
             user.email,
-            'USER_LOGIN',
+            'VAIBHAV',
             {
               user: 'VaibhavDudhal'
             }
