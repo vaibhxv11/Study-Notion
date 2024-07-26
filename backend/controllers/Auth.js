@@ -6,9 +6,7 @@ const bcrypt =require('bcrypt')
 const jwt=require('jsonwebtoken')
 const { hmac_rawurlsafe_base64_string } = require('../utils/hmacUtils');
 require("dotenv").config();
-const {triggerSuprSendEvent}=require("../utils/triggerSuprSendEvent")
-// const { sendNotification } = require('../utils/sendEvent');
-
+const  {sendSuprSendEvent }  = require("../utils/sendSuprSendEvent")
 
 
 
@@ -248,13 +246,19 @@ exports.login=async (req , res)=>{
             user.token=token;
             user.password=undefined;
 
-            //sending event 
+            sendSuprSendEvent(
+                user.email ,
+                "VAIBHAV" ,
+                {
+                    
 
-            await triggerSuprSendEvent(user.email, 'user_login', {
-                email,
-                accountType: user.accountType
-              });
+                }
+               
+              );
+
         
+           
+          
         //create cookie and send response
        
           const options={

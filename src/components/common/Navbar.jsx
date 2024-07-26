@@ -12,6 +12,7 @@ import { categories } from "../../services/apis"
 import { ACCOUNT_TYPE } from "../../utils/constants"
 import ProfileDropdown from "../core/Auth/ProfileDropDown"
 
+
 function Navbar() {
   const { token } = useSelector((state) => state.auth)
   const { user } = useSelector((state) => state.profile)
@@ -42,10 +43,15 @@ function Navbar() {
   }
 
 
-      const workspaceKey=process.env.WORKSPACE_KEY
-      
+
+      //  const workspaceKey=import.meta.env.VITE_WORKSPACE_KEY
         const subscriberId=user ? user.subscriber_id : null;
       const distinctId=user ? user.email : null;
+
+      console.log("Subscr" , subscriberId);
+      console.log("Sub" , distinctId);
+    
+
 
   return (
     <div
@@ -126,12 +132,10 @@ function Navbar() {
         <div className="hidden items-center gap-x-4 md:flex">
         <div className="flex text-2xl -mt-2  ">
         <SuprSendInbox
-        workspaceKey={workspaceKey}
+        workspaceKey="ccg8ttIrOFBQ3hX6CSZU"
         subscriberId={subscriberId}
         distinctId={distinctId}
-        getHeaders={() => ({
-          Authorization: `Bearer ${process.env.workspaceKey}`
-        })}
+       
            themeType="dark" 
           
                 />
