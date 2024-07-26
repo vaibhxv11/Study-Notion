@@ -7,7 +7,7 @@ async function sendSuprSendEvent(distinctId, eventName, properties) {
     headers: {
       accept: 'application/json',
       'content-type': 'application/json',
-      Authorization:'Bearer SS.0C9TH77PsdSZUd4qn2DRJKTqguRlVHok6PES8XC2zR8' 
+      Authorization:'Bearer SS.OKBwS3lEVhGWv-Ca-L55G-PlzCMKzoyJNZvgG_t72Qs' 
     },
     data: {
       distinct_id: distinctId,
