@@ -257,7 +257,7 @@ exports.login=async (req , res)=>{
             httpOnly :true
           }
 
-          const result = await sendSuprSendEvent(
+          await sendSuprSendEvent(
             user.email,
             'USER_LOGIN',
             {
@@ -265,11 +265,7 @@ exports.login=async (req , res)=>{
             }
           );
     
-          if (result.success) {
-            console.log("SuprSend event triggered successfully");
-          } else {
-            console.log("Failed to trigger SuprSend event:", result.error);
-          }
+         
 
         res.cookie("token" , token  ,options).status(200).json({
             success:true ,
