@@ -14,6 +14,7 @@ const {cloudinaryConnect} = require("./config/cloudinary")
 const fileUpload=require("express-fileupload")
 const dotenv =require("dotenv");
 
+const {Suprsend, WorkflowTriggerRequest} = require("@suprsend/node-sdk");
 dotenv.config();
 
 const PORT =process.env.PORT ;
@@ -68,40 +69,4 @@ app.get("/" , function(req , res) {
 app.listen(PORT, ()=>{
     console.log(`App is running at ${PORT}`)
 })
-
-
-// const axios = require('axios');
-
-// async function getNotificationCount(subscriberId, distinctId) {
-//   try {
-//     const response = await axios.get(
-//       `https://inboxs.live/notification_count/`,
-//       {
-//         headers: {
-//           Authorization: `Bearer SS.0C9TH77PsdSZUd4qn2DRJKTqguRlVHok6PES8XC2zR8`
-//         },
-//         params: {
-//           subscriber_id: subscriberId,
-//           distinct_id: distinctId,
-//           tenant_id: 'default'
-//         }
-//       }
-//     );
-//     console.log('Notification Count:', response.data);
-//   } catch (error) {
-//     if (error.response) {
-//       console.error('Error response data:', error.response.data);
-//       console.error('Error response status:', error.response.status);
-//     } else if (error.request) {
-//       console.error('Error request data:', error.request);
-//     } else {
-//       console.error('Error message:', error.message);
-//     }
-//     console.error('Error config:', error.config);
-//   }
-// }
-
-// // Example usage
-// getNotificationCount('frVOEulH7f16DgmSLgtv9zUTq-EmgtZ6d6fxY5mUtAQ', 'balasodudhal775@gmail.com');
-
 

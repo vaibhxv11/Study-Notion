@@ -11,6 +11,7 @@ import { apiConnector } from "../../services/apiconnector"
 import { categories } from "../../services/apis"
 import { ACCOUNT_TYPE } from "../../utils/constants"
 import ProfileDropdown from "../core/Auth/ProfileDropDown"
+import { SuprSendProvider } from "@suprsend/react-inbox";
 
 
 function Navbar() {
@@ -44,13 +45,14 @@ function Navbar() {
 
 
 
-      //  const workspaceKey=import.meta.env.VITE_WORKSPACE_KEY
+       const workspaceKey=process.env.REACT_APP_WORKSPACE_KEY;
         const subscriberId=user ? user.subscriber_id : null;
       const distinctId=user ? user.email : null;
-
+      
       console.log("Subscr" , subscriberId);
-      console.log("Sub" , distinctId);
-    
+      console.log("dis" , workspaceKey);
+      
+
 
 
   return (
@@ -132,13 +134,14 @@ function Navbar() {
         <div className="hidden items-center gap-x-4 md:flex">
         <div className="flex text-2xl -mt-2  ">
         <SuprSendInbox
-        workspaceKey="ccg8ttIrOFBQ3hX6CSZU"
+        workspaceKey={process.env.REACT_APP_WORKSPACE_KEY} 
         subscriberId={subscriberId}
-        distinctId={distinctId}
+        distinctId={distinctId} 
+      
        
            themeType="dark" 
           
-                />
+              />  
             </div>
         
           {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (

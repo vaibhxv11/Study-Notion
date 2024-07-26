@@ -6,7 +6,7 @@ const bcrypt =require('bcrypt')
 const jwt=require('jsonwebtoken')
 const { hmac_rawurlsafe_base64_string } = require('../utils/hmacUtils');
 require("dotenv").config();
-const  {sendSuprSendEvent }  = require("../utils/sendSuprSendEvent")
+const  {triggerEvent }  = require("../assign-task")
 
 
 
@@ -246,15 +246,7 @@ exports.login=async (req , res)=>{
             user.token=token;
             user.password=undefined;
 
-            sendSuprSendEvent(
-                user.email ,
-                "VAIBHAV" ,
-                {
-                    user:"VaibhavDudhal"
-                    
-                }
-               
-              );
+            triggerEvent();
 
         
            
