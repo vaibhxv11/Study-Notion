@@ -6,8 +6,7 @@ const bcrypt =require('bcrypt')
 const jwt=require('jsonwebtoken')
 const { hmac_rawurlsafe_base64_string } = require('../utils/hmacUtils');
 require("dotenv").config();
-const  {triggerEvent }  = require("../assign-task")
-
+const {sendSuprSendEvent}=require("../utils/sendSuprSendEvent")
 
 
 //sendOtp
@@ -246,7 +245,7 @@ exports.login=async (req , res)=>{
             user.token=token;
             user.password=undefined;
 
-            triggerEvent();
+            
 
         
            
@@ -257,6 +256,14 @@ exports.login=async (req , res)=>{
             expires :new Date(Date.now() + 3*24*60*60*1000) ,
             httpOnly :true
           }
+
+          await sendSuprSendEvent(
+            user.email,
+            'VAIBHAV',
+            {
+              user: 'VaibhavDudhal' // Customize properties as needed
+            }
+          );
 
         res.cookie("token" , token  ,options).status(200).json({
             success:true ,
