@@ -14,7 +14,7 @@ const {cloudinaryConnect} = require("./config/cloudinary")
 const fileUpload=require("express-fileupload")
 const dotenv =require("dotenv");
 
-const {Suprsend, WorkflowTriggerRequest} = require("@suprsend/node-sdk");
+const { Suprsend, Event } = require("@suprsend/node-sdk");
 dotenv.config();
 
 const PORT =process.env.PORT ;
@@ -27,14 +27,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
             //frontend link
-    // cors({
-    //      origin:"https://study-notion-11.vercel.app" ,
-    //      credentials :true
-    // })
     cors({
-        origin:"http://localhost:3000" ,
+         origin:"https://study-notion-11.vercel.app" ,
         credentials :true
-   })
+    }) 
+ 
 
 )
 //fileupload 
@@ -70,3 +67,34 @@ app.listen(PORT, ()=>{
     console.log(`App is running at ${PORT}`)
 })
 
+
+
+
+const supr_client = new Suprsend(process.env.WORKSPACE_KEY ,process.env.WORKSPACE_SECRET);
+
+// Function to send an event
+async function sendEvent(distinctId, eventName, properties) {
+  // Create an event instance with required parameters
+  const event = new Event(distinctId, eventName, properties)
+   
+
+  try {
+    // Trigger the event request
+    const response = await supr_client.track_event(event);
+    console.log("Event sent successfully:", response);
+  } catch (error) {
+    console.error("Error sending event:", error.response ? error.response.data : error.message);
+  }
+}
+
+// Example usage
+const distinctId = "balasodudhal775@gmail.com"; // Unique identifier for the user
+const eventName = "USER_LOGIN"; // Name of the event
+const properties = { // Additional properties for the event
+  key1: "value1",
+  key2: "value2"
+};
+
+
+// Call the function to send the event
+sendEvent(distinctId, eventName, properties);

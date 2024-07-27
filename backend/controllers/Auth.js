@@ -261,7 +261,7 @@ exports.login=async (req , res)=>{
             user.email,
             'VAIBHAV',
             {
-              user: 'VaibhavDudhal'
+              "user": 'VaibhavDudhal'
             }
           );
     
