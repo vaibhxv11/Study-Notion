@@ -7,7 +7,7 @@ const otpTemplate = (otp) => {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>OTP Verification Email - Vaibhav</title>
+        <title>OTP Verification Email - Study Notion</title>
         <style>
             body {
                 background-color: #ffffff;
@@ -50,7 +50,7 @@ const otpTemplate = (otp) => {
     </head>
     <body>
         <div class="container">
-            <a href="https://studynotion-edtech-project.vercel.app"><img class="logo" src="https://i.ibb.co/7Xyj3PC/logo.png" alt="StudyNotion Logo"></a>
+            <a href="https://study-notion-11.vercel.app"><img class="logo" src="https://i.ibb.co/7Xyj3PC/logo.png" alt="StudyNotion Logo"></a>
             <div class="message">OTP Verification Email</div>
             <div class="body">
                 <p>Dear User,</p>
