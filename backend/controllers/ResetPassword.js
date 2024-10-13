@@ -36,7 +36,7 @@ exports.resetPasswordToken=async (req, res)=>{
   
       //create url
   
-      const url =`http://localhost:3000/reset-password/${token}`
+      const url =`https://study-notion-11.vercel.app/reset-password/${token}`
   
       //send  mail containg the url
        await mailSender(email ,
